@@ -4,5 +4,5 @@ import com.smartcampus.entity.User;
 
 public interface UserService {
 
-    User login(String username);
+    User login(String id);
 }

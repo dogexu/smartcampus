@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
-  User: my-deepin
-  Date: 18-4-14
-  Time: 下午4:18
+  User: SAMSUNG
+  Date: 2018/6/26
+  Time: 9:11
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page isELIgnored="false" %>
@@ -13,10 +13,11 @@
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path;
 %>
 <html>
-<link rel="stylesheet" href="<%=basePath%>/js/bootstrap.min.css"/>
-<link rel="stylesheet" href="<%=basePath%>/js/font-awesome.min.css"/>
 <head>
-    <title>客户列表页面</title>
+    <title>商品列表页面</title>
+    <link rel="stylesheet" href="<%=basePath%>/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="<%=basePath%>/css/font-awesome.min.css"/>
+
 </head>
 <body>
 <!-- 导航栏 -->
@@ -24,13 +25,12 @@
     <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand">SSM整合</a>
+                <a class="navbar-brand">智慧校园</a>
             </div>
             <div>
                 <ul class="nav navbar-nav">
-                    <li><a href="<%=basePath%>/customer/toSavePage.do"><strong>添加信息功能</strong></a></li>
-                    <li><a href="<%=basePath%>/customer/toListPage.do"><strong>分页查询功能</strong></a></li>
-                    <li><a>Create by TyCoding</a></li>
+                    <li><a href="<%=basePath%>/goods/toSavePage.do"><strong>添加商品功能</strong></a></li>
+                    <li><a href="<%=basePath%>/goods/toListPage.do"><strong>分页查询功能</strong></a></li>
                 </ul>
             </div>
         </div>
@@ -38,19 +38,19 @@
 </div>
 <br/>
 <div class="container">
-    <h1 class="text-center">客户列表信息页面</h1>
+    <h1 class="text-center">商品列表信息页面</h1>
     <hr/>
     <br/>
-    <form class="form-inline" action="<%=basePath%>/customer/findByPage.do" method="post">
+    <form class="form-inline" action="<%=basePath%>/goods/findByPage.do" method="post">
         <div class="form-group">
-            <label>客户姓名：</label>
-            <input type="text" class="form-control" name="c_name"/>
+            <label>商品名称：</label>
+            <input type="text" class="form-control" name="g_name"/>
         </div>
         &nbsp;&nbsp;
         &nbsp;&nbsp;
         <div class="form-group">
-            <label>客户电话</label>
-            <input type="text" class="form-control" name="c_telephone"/>
+            <label>商品价格</label>
+            <input type="text" class="form-control" name="g_price"/>
         </div>
         &nbsp;&nbsp;&nbsp;&nbsp;
         &nbsp;&nbsp;&nbsp;&nbsp;
@@ -66,27 +66,39 @@
         <table class="table table-hover table-striped">
             <thead>
             <tr>
-                <th style="text-align: center;">客户编号</th>
-                <th style="text-align: center;">客户姓名</th>
-                <th style="text-align: center;">客户电话</th>
-                <th style="text-align: center;">客户地址</th>
-                <th style="text-align: center;">客户备注</th>
+                <th style="text-align: center;">商品编号</th>
+                <th style="text-align: center;">商品名称</th>
+                <th style="text-align: center;">商品价格</th>
+                <th style="text-align: center;">客户来源</th>
+                <th style="text-align: center;">条形码</th>
+                <th style="text-align: center;">商品图片</th>
+                <th style="text-align: center;">商品缩略图</th>
+                <th style="text-align: center;">商品描述</th>
+                <th style="text-align: center;">商品详情</th>
+                <th style="text-align: center;">商品状态</th>
+                <th style="text-align: center;">商家表ID</th>
                 <th style="text-align: center;">操作</th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${requestScope.page.beanList}" var="customer">
+            <c:forEach items="${requestScope.page.beanList}" var="goods">
                 <tr class="text-center">
-                    <td>${customer.c_id}</td>
-                    <td>${customer.c_name}</td>
-                    <td>${customer.c_telephone}</td>
-                    <td>${customer.c_address}</td>
-                    <td>${customer.c_remark}</td>
+                    <td>${goods.id}</td>
+                    <td>${goods.g_name}</td>
+                    <td>${goods.g_price}</td>
+                    <td>${goods.g_ly}</td>
+                    <td>${goods.g_vid}</td>
+                    <td>${goods.g_img}</td>
+                    <td>${goods.g_simg}</td>
+                    <td>${goods.g_label}</td>
+                    <td>${goods.g_details}</td>
+                    <td>${goods.g_state}</td>
+                    <td>${goods.s_i_uuid}</td>
                     <td>
-                        <a href="#" onclick="return edit(${customer.c_id})" style="text-decoration: none;">
+                        <a href="#" onclick="return edit(${goods.id})" style="text-decoration: none;">
                             <span class="fa fa-edit fa-fw"></span>
                         </a>
-                        <a href="#" onclick="return trash(${customer.c_id})" style="text-decoration: none;" data-toggle="modal" data-target="#trashModal">
+                        <a href="#" onclick="return trash(${goods.id})" style="text-decoration: none;" data-toggle="modal" data-target="#trashModal">
                             <span class="fa fa-trash-o fa-fw"></span>
                         </a>
                     </td>
@@ -95,7 +107,7 @@
             </tbody>
         </table>
     </div>
-    <form class="listForm" method="post" action="<%=basePath%>/customer/findByPage.do">
+    <form class="listForm" method="post" action="<%=basePath%>/goods/findByPage.do">
         <div class="row">
             <div class="form-inline">
                 <label style="font-size:14px;margin-top:22px;">
@@ -128,11 +140,11 @@
                 </label>
                 <ul class="pagination" style="float:right;">
                     <li>
-                        <a href="<%=basePath%>/customer/findByPage.do?pageCode=1"><strong>首页</strong></a>
+                        <a href="<%=basePath%>/goods/findByPage.do?pageCode=1"><strong>首页</strong></a>
                     </li>
                     <li>
                         <c:if test="${requestScope.page.pageCode > 2}">
-                            <a href="<%=basePath%>/customer/findByPage.do?pageCode=${requestScope.page.pageCode - 1}">&laquo;</a>
+                            <a href="<%=basePath%>/goods/findByPage.do?pageCode=${requestScope.page.pageCode - 1}">&laquo;</a>
                         </c:if>
                     </li>
 
@@ -168,18 +180,19 @@
                         </c:if>
                         <c:if test="${i != requestScope.page.pageCode}">
                             <li>
-                                <a href="<%=basePath%>/customer/findByPage.do?pageCode=${i}">${i}</a>
+                                <a href="<%=basePath%>/goods/findByPage.do?pageCode=${i}">${i}</a>
                             </li>
                         </c:if>
                     </c:forEach>
 
+
                     <li>
                         <c:if test="${requestScope.page.pageCode < requestScope.page.totalPage}">
-                            <a href="<%=basePath%>/customer/findByPage.do?pageCode=${requestScope.page.pageCode + 1}">&raquo;</a>
+                            <a href="<%=basePath%>/goods/findByPage.do?pageCode=${requestScope.page.pageCode + 1}">&raquo;</a>
                         </c:if>
                     </li>
                     <li>
-                        <a href="<%=basePath%>/customer/findByPage.do?pageCode=${requestScope.page.totalPage}"><strong>末页</strong></a>
+                        <a href="<%=basePath%>/goods/findByPage.do?pageCode=${requestScope.page.totalPage}"><strong>末页</strong></a>
                     </li>
                 </ul>
             </div>
@@ -210,7 +223,7 @@
     </div>
 
     <!-- 编辑的模态框 -->
-    <form class="form-horizontal" role="form" method="post" action="<%=basePath%>/customer/update.do"
+    <form class="form-horizontal" role="form" method="post" action="<%=basePath%>/goods/update.do"
           id="form_edit">
         <div class="modal fade" id="editModal" role="dialog" aria-labelledby="myModalLabel"
              aria-hidden="true">
@@ -218,30 +231,57 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">修改客户信息</h4>
+                        <h4 class="modal-title">修改商品信息</h4>
                     </div>
                     <div class="modal-body" style="margin-left: 80px;">
                         <div class="form-group form-inline">
-                            <label>客户姓名：</label>
-                            <input type="text" name="c_name" class="form-control" id="c_name"/>
+                            <label>商品名称：</label>
+                            <input type="text" name="g_name" class="form-control" id="g_name"/>
                         </div>
                         <br/>
-                        <br/>
                         <div class="form-group form-inline">
-                            <label>客户电话：</label>
-                            <input type="text" name="c_telephone" class="form-control" id="c_telephone"/>
+                            <label>商品价格：</label>
+                            <input type="text" name="g_price" class="form-control" id="g_price"/>
                         </div>
                         <br/>
-                        <br/>
                         <div class="form-group form-inline">
-                            <label>客户住址：</label>
-                            <input type="text" name="c_address" class="form-control" id="c_address"/>
+                            <label>商品来源：</label>
+                            <input type="text" name="g_ly" class="form-control" id="g_ly"/>
                         </div>
                         <br/>
+                        <div class="form-group form-inline">
+                            <label>条形码：</label>
+                            <input type="text" name="g_vid" class="form-control" id="g_vid"/>
+                        </div>
                         <br/>
                         <div class="form-group form-inline">
-                            <label>客户备注：</label>
-                            <input type="text" name="c_remark" class="form-control" id="c_remark"/>
+                            <label>商品图片：</label>
+                            <input type="text" name="g_img" class="form-control" id="g_img"/>
+                        </div>
+                        <br/>
+                        <div class="form-group form-inline">
+                            <label>商品缩略图：</label>
+                            <input type="text" name="g_simg" class="form-control" id="g_simg"/>
+                        </div>
+                        <br/>
+                        <div class="form-group form-inline">
+                            <label>商品描述：</label>
+                            <input type="text" name="g_label" class="form-control" id="g_label"/>
+                        </div>
+                        <br/>
+                        <div class="form-group form-inline">
+                            <label>商品详情：</label>
+                            <input type="text" name="g_details" class="form-control" id="g_details"/>
+                        </div>
+                        <br/>
+                        <div class="form-group form-inline">
+                            <label>商品状态：</label>
+                            <input type="text" name="g_state" class="form-control" id="g_state"/>
+                        </div>
+                        <br/>
+                        <div class="form-group form-inline">
+                            <label>商家ID：</label>
+                            <input type="text" name="s_i_uuid" class="form-control" id="s_i_uuid"/>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -254,17 +294,17 @@
     </form>
 </div>
 </body>
-<script src="<%=basePath%>/lib/jquery-3.3.1.min.js"></script>
-<script src="<%=basePath%>/lib/bootstrap.min.js"></script>
+<script src="<%=basePath%>/js/jquery-3.3.1.min.js"></script>
+<script src="<%=basePath%>/js/bootstrap.min.js"></script>
 <script type="text/javascript">
     // 删除信息的方法
-    function trash(c_id){
-        if(!c_id){
+    function trash(id){
+        if(!id){
             alert("error");
         }else{
             $(".delSure").click(function(){
                 $.ajax({
-                    url: '<%=basePath%>/customer/delete.do?c_id='+c_id,
+                    url: '<%=basePath%>/goods/delete.do?id='+id,
                     type: 'POST',
                     success: function(data){
                         $("body").html(data);
@@ -276,25 +316,31 @@
 
 
     // 编辑信息的方法
-    function edit(c_id){
-        if(!c_id){
+    function edit(id){
+        if(!id){
             alert("error");
         }else{
             // 先去查询数据
             $.ajax({
-                url: '<%=basePath%>/customer/findById.do',
+                url: '<%=basePath%>/goods/findById.do',
                 type: 'POST',
                 dataType: 'json',
                 contentType: 'application/json;charset=UTF-8',
                 data: JSON.stringify({
-                    c_id: c_id
+                    id: id
                 }),
                 success: function(data){
-                    $("#c_id").val(data.c_id);
-                    $("#c_name").val(data.c_name);
-                    $("#c_telephone").val(data.c_telephone);
-                    $("#c_address").val(data.c_address);
-                    $("#c_remark").val(data.c_remark);
+                    $("#id").val(data.id);
+                    $("#g_name").val(data.g_name);
+                    $("#g_price").val(data.g_price);
+                    $("#g_ly").val(data.g_ly);
+                    $("#g_vid").val(data.g_vid);
+                    $("#g_img").val(data.g_img);
+                    $("#g_simg").val(data.g_simg);
+                    $("#g_label").val(data.g_label);
+                    $("#g_details").val(data.g_details);
+                    $("#g_state").val(data.g_state);
+                    $("#s_i_uuid").val(data.s_i_uuid);
                     $("#editModal").modal('show');
                 },
                 error: function(){

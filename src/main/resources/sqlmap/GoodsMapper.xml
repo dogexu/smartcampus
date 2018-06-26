@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.smartcampus.dao.GoodsMapper">
+
+  <!-- resultMap用于实现映射结果集 -->
+  <resultMap id="BaseResultMap" type="com.smartcampus.entity.Goods">
+    <id column="id" property="id" jdbcType="INTEGER"/>
+    <result column="g_name" property="g_name" jdbcType="VARCHAR"/>
+    <result column="g_price" property="g_price" jdbcType="VARCHAR"/>
+    <result column="g_ly" property="g_ly" jdbcType="VARCHAR"/>
+    <result column="g_vid" property="g_vid" jdbcType="VARCHAR"/>
+    <result column="g_img" property="g_img" jdbcType="VARCHAR"/>
+    <result column="g_simg" property="g_simg" jdbcType="VARCHAR"/>
+    <result column="g_label" property="g_label" jdbcType="VARCHAR"/>
+    <result column="g_details" property="g_details" jdbcType="VARCHAR"/>
+    <result column="s_i_uuid" property="s_i_uuid" jdbcType="VARCHAR"/>
+  </resultMap>
+
+  <!-- 客户信息保存的方法 -->
+  <insert id="save" parameterType="Goods">
+        insert into
+        goods(
+            g_name,
+            g_price,
+            g_ly,
+            g_vid,
+            g_img,
+            g_simg,
+            g_label,
+            g_details,
+            g_state,
+            s_i_uuid)
+        values(
+            #{g_name},
+            #{g_price},
+            #{g_ly},
+            #{g_vid},
+            #{g_img},
+            #{g_simg},
+            #{g_label},
+            #{g_details},
+            #{g_state},
+            #{s_i_uuid}
+        );
+    </insert>
+
+  <!-- 查询总的记录数 -->
+  <select id="selectCount" resultType="int">
+        select count(*) from goods;
+    </select>
+
+  <!-- 分页查询 -->
+  <select id="findByPage" parameterType="Map" resultMap="BaseResultMap">
+    select * from goods
+    <if test="start != null and size != null">
+      limit #{start},#{size}
+    </if>
+  </select>
+
+  <!-- 多条件查询 -->
+  <select id="findCondition" parameterType="Map" resultMap="BaseResultMap">
+    <!-- where 1=1 可以保证where后的语句永远是正确的
+        因为在where后的动态SQL可能会执行也可能不会不会执行，如果没有执行，那么where后将跟一个空值，那么显然这样是会报错的
+    -->
+    select * from goods where 1 = 1
+    <if test="g_name != null and g_name != ''">
+      and g_name like concat('%', #{g_name}, '%')
+    </if>
+    <if test="g_price != null and g_price != ''">
+      and g_price like concat('%', #{g_price}, '%')
+    </if>
+    <!-- 我们通过在Service中的计算决定了我们每次请求的数据应该从那一页开始，那一页结束 -->
+    <if test="start != null and size != null">
+      limit #{start},#{size}
+    </if>
+  </select>
+
+  <!-- 根据id删除信息的方法 -->
+  <delete id="delete" parameterType="int">
+        delete from goods where id = #{id}
+    </delete>
+
+  <!-- 根据客户id查询客户信息的方法 -->
+  <select id="findById" parameterType="int" resultType="Goods">
+        select * from goods where id = #{id}
+    </select>
+
+  <!-- 更新客户信息的方法 -->
+  <update id="update" parameterType="Goods">
+        update goods set
+            g_name=#{g_name},
+            g_price=#{g_price},
+            g_ly=#{g_ly},
+            g_vid=#{g_vid},
+            g_img=#{g_img},
+            g_simg=#{g_simg},
+            g_label=#{g_label},
+            g_details=#{g_details},
+            g_state=#{g_state},
+            s_i_uuid=#{s_i_uuid}
+        where id=#{id}
+    </update>
+</mapper>

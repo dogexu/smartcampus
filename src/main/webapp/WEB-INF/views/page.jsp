@@ -12,7 +12,7 @@
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path;
 %>
 <html>
-<link rel="stylesheet" href="<%=basePath%>/js/bootstrap.min.css"/>
+<link rel="stylesheet" href="<%=basePath%>/css/bootstrap.min.css"/>
 <head>
     <title>Title</title>
 </head>
@@ -22,12 +22,12 @@
     <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand">SSM整合</a>
+                <a class="navbar-brand">智慧校园</a>
             </div>
             <div>
                 <ul class="nav navbar-nav">
-                    <li><a href="<%=basePath%>/customer/toSavePage.do"><strong>添加信息功能</strong></a></li>
-                    <li><a href="<%=basePath%>/customer/toListPage.do"><strong>分页查询功能</strong></a></li>
+                    <li><a href="<%=basePath%>/goods/toSavePage.do"><strong>添加商品功能</strong></a></li>
+                    <li><a href="<%=basePath%>/goods/toListPage.do"><strong>分页查询功能</strong></a></li>
                 </ul>
             </div>
         </div>

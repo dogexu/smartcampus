@@ -1,33 +1,34 @@
 package com.smartcampus.entity;
 
-import java.io.Serializable;
+public class User {
+    private String uuid;
 
-/**
- * 这是用户登录的JavaBean
- */
-public class User implements Serializable {
+    private String id;
 
-    //用户id
-    private int uid;
-    //用户登录名
-    private String username;
-    //用户密码
     private String password;
 
-    public int getUid() {
-        return uid;
+    private String state;
+
+    private String type;
+
+    private Integer authId;
+
+    private String shopType;
+
+    public String getUuid() {
+        return uuid;
     }
 
-    public void setUid(int uid) {
-        this.uid = uid;
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 
-    public String getUsername() {
-        return username;
+    public String getId() {
+        return id;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getPassword() {
@@ -38,13 +39,35 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "uid='" + uid + '\'' +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+    public String getState() {
+        return state;
     }
 
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Integer getAuthId() {
+        return authId;
+    }
+
+    public void setAuthId(Integer authId) {
+        this.authId = authId;
+    }
+
+    public String getShopType() {
+        return shopType;
+    }
+
+    public void setShopType(String shopType) {
+        this.shopType = shopType;
+    }
 }

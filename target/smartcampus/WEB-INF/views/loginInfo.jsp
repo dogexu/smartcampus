@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
-  User: ty
-  Date: 2018/5/4
-  Time: 下午12:35
+  User: SAMSUNG
+  Date: 2018/6/26
+  Time: 9:11
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page isELIgnored="false" %>
@@ -14,7 +14,7 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="<%=basePath%>/js/bootstrap.min.css"/>
+    <link rel="stylesheet" href="<%=basePath%>/css/bootstrap.min.css"/>
 </head>
 <body>
 

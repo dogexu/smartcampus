@@ -1,7 +1,7 @@
 package com.smartcampus.controller;
 
-import com.smartcampus.entity.Customer;
-import com.smartcampus.service.CustomerService;
+import com.smartcampus.entity.Goods;
+import com.smartcampus.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,22 +15,22 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 这是客户管理的Controller层
+ * 这是商品管理的Controller层
  *
  */
 @Controller
-@RequestMapping(value = "/customer")
-public class CustomerController {
+@RequestMapping(value = "/goods")
+public class GoodsController {
 
     /**
      * 注入service层
      * 使用@Resource和@Autowired都可以实现Bean的自动注入
      */
     @Autowired
-    private CustomerService customerService;
+    private GoodsService goodsService;
 
     /**
-     * 跳转到添加客户功能页面
+     * 跳转到添加商品功能页面
      */
     @RequestMapping("/toSavePage")
     public String toSavePage() {
@@ -38,25 +38,25 @@ public class CustomerController {
     }
 
     /**
-     * 跳转到客户列表页面
+     * 跳转到商品列表页面
      */
     @RequestMapping(value = "/toListPage")
-    public String toListPage(Model model) {
+    public String toListPage() {
         return "redirect:findByPage.do";
     }
 
     /**
-     * 客户信息保存的方法
+     * 商品信息保存的方法
      */
     @RequestMapping(value = "/save")
-    public String save(Customer customer, Model model) {
-        customerService.save(customer);
-        model.addAttribute("message", "保存客户信息系成功");
+    public String save(Goods goods, Model model) {
+        goodsService.save(goods);
+        model.addAttribute("message", "保存商品信息成功");
         return "info";
     }
 
     /**
-     * 客户信息列表（分页查询功能）
+     * 商品信息列表（分页查询功能）
      */
     @RequestMapping(value="/findByPage")
     public String findByPage(@RequestParam(value="pageCode",defaultValue = "1",required = false)int pageCode,
@@ -64,56 +64,57 @@ public class CustomerController {
                              HttpServletRequest request,
                              Model model){
         // 封装分页数据
-        String c_name = request.getParameter("c_name");
-        String c_telephone = request.getParameter("c_telephone");
+        String g_name = request.getParameter("g_name");
+        String g_price = request.getParameter("g_price");
         Map<String,Object> conMap = new HashMap<String,Object>();
-        conMap.put("c_name",c_name);
-        conMap.put("c_telephone",c_telephone);
+        conMap.put("g_name",g_name);
+        conMap.put("g_price",g_price);
 
         // 回显数据
-        model.addAttribute("page",customerService.findByPage(pageCode,pageSize,conMap));
+        model.addAttribute("page",goodsService.findByPage(pageCode,pageSize,conMap));
         return "list";
     }
 
     /**
-     * 客户信息删除的方法
+     * 商品信息删除的方法
      */
     @RequestMapping(value="/delete")
-    public String delete(@RequestParam int c_id,Model model){
-        if(customerService.delete(c_id) > 0){
-            model.addAttribute("message","删除客户信息成功");
+    public String delete(@RequestParam int id,Model model){
+        if(goodsService.delete(id) > 0){
+            model.addAttribute("message","删除商品信息成功");
             return "info";
         }else{
-            model.addAttribute("message","删除客户信息失败");
+            model.addAttribute("message","删除商品信息失败");
             return "info";
         }
     }
 
     /**
-     * 根据id查询客户信息方法
+     * 根据id查询商品信息方法
      */
     @ResponseBody
     @RequestMapping(value="/findById")
-    public Customer findById(@RequestBody Customer customer){
-        Customer customer_info = customerService.findById(customer.getC_id());
-        if(customer_info != null){
-            return customer_info;
+    public Goods findById(@RequestBody Goods goods){
+        Goods goods_info = goodsService.findById(goods.getId());
+        if(goods_info != null){
+            return goods_info;
         }else{
             return null;
         }
     }
 
     /**
-     * 更新客户信息的方法
+     * 更新商品信息的方法
      */
     @RequestMapping(value="/update")
-    public String update(Customer customer,Model model){
-        int rows = customerService.update(customer);
+    public String update(Goods goods,Model model){
+        int rows = goodsService.update(goods);
+        System.out.println("111111111111111111");
         if(rows > 0){
-            model.addAttribute("message","更新客户信息成功");
+            model.addAttribute("message","更新商品信息成功");
             return "info";
         }else{
-            model.addAttribute("message","更新客户信息失败");
+            model.addAttribute("message","更新商品信息失败");
             return "info";
         }
 

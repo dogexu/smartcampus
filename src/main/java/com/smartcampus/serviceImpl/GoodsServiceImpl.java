@@ -1,9 +1,9 @@
 package com.smartcampus.serviceImpl;
 
-import com.smartcampus.dao.CustomerMapper;
-import com.smartcampus.entity.Customer;
+import com.smartcampus.dao.GoodsMapper;
+import com.smartcampus.entity.Goods;
 import com.smartcampus.entity.PageBean;
-import com.smartcampus.service.CustomerService;
+import com.smartcampus.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,38 +11,33 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * 客户的service层
- */
 @Service
-public class CustomerServiceImpl implements CustomerService {
-
+public class GoodsServiceImpl implements GoodsService {
     /**
      * 注入
      */
     @Autowired
-    private CustomerMapper customerMapper;
-
+    private GoodsMapper goodsMapper;
     /**
-     * 客户信息保存的方法
+     * 商品信息保存的方法
      */
-    public void save(Customer customer) {
-        customerMapper.save(customer);
+    public void save(Goods goods) {
+        goodsMapper.save(goods);
     }
 
     /**
      * 分页查询的方法
      */
-    public PageBean<Customer> findByPage(int pageCode, int pageSize, Map<String, Object> conMap) {
+    public PageBean<Goods> findByPage(int pageCode, int pageSize, Map<String, Object> conMap) {
         HashMap<String,Object> map = new HashMap<String,Object>();
-        PageBean<Customer> pageBean = new PageBean<Customer>();
+        PageBean<Goods> pageBean = new PageBean<Goods>();
 
         //封装当前页
         pageBean.setPageCode(pageCode);
         pageBean.setPageSize(pageSize);
 
         // 封装总记录数（从数据库中查询）
-        int totalCount = customerMapper.selectCount();
+        int totalCount = goodsMapper.selectCount();
         System.out.println("查询到的总记录数："+totalCount);
         pageBean.setTotalCount(totalCount);
 
@@ -56,7 +51,7 @@ public class CustomerServiceImpl implements CustomerService {
         map.put("size",pageBean.getPageSize());
 
         //封装每页显示的数据
-        List<Customer> list = customerMapper.findByPage(map);
+        List<Goods> list = goodsMapper.findByPage(map);
         pageBean.setBeanList(list);
 
         // 分页查询功能也要封装显示起始页和终止页
@@ -64,7 +59,7 @@ public class CustomerServiceImpl implements CustomerService {
         conMap.put("size",pageBean.getPageSize());
 
         // 封装
-        List<Customer> listCondition = customerMapper.findCondition(conMap);
+        List<Goods> listCondition = goodsMapper.findCondition(conMap);
         pageBean.setBeanList(listCondition);
 
         return pageBean;
@@ -73,21 +68,22 @@ public class CustomerServiceImpl implements CustomerService {
     /**
      * 根据id删除信息的方法
      */
-    public int delete(int c_id) {
-        return customerMapper.delete(c_id);
+    public int delete(int id) {
+        return goodsMapper.delete(id);
     }
 
     /**
-     * 根据客户id查询客户信息的方法
+     * 根据商品id查询商品信息的方法
      */
-    public Customer findById(int c_id) {
-        return customerMapper.findById(c_id);
+    public Goods findById(int id) {
+        return goodsMapper.findById(id);
     }
 
     /**
-     * 更新客户信息的方法
+     * 更新商品信息的方法
      */
-    public int update(Customer customer) {
-        return customerMapper.update(customer);
+    public int update(Goods goods) {
+        return goodsMapper.update(goods);
     }
 }
+
