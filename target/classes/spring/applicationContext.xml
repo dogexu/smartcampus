@@ -13,7 +13,7 @@
                           ">
 
     <!-- ①：对com.springmvc包中的所有类进行扫描，以完成Bean创建和自动依赖注入的功能 -->
-    <context:component-scan base-package="com.smartcampus.controller"/>
+    <context:component-scan base-package="com.smartcampus"/>
     <mvc:annotation-driven />
     <!-- 静态资源访问 -->
     <!--如果webapp下你新建了文件夹，想访问里面的静态资源，那么就要在这配置一下-->
@@ -85,7 +85,7 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <!-- 数据源 -->
         <property name="dataSource" ref="dataSource"/>
-        <property name="mapperLocations" value="classpath:sqlmap/*Mapper.xml"/>
+        <property name="mapperLocations" value="classpath:mappers/*Mapper.xml"/>
         <property name="typeAliasesPackage" value="com.smartcampus.entity" />
 
     </bean>
