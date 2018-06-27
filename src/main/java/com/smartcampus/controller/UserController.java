@@ -24,7 +24,7 @@ public class UserController {
      * 用户登录
      */
     @RequestMapping(value = "/login")
-    public String login(@RequestParam String id,@RequestParam String password, Model model) {
+    public String login(@RequestParam String id, @RequestParam String password, Model model) {
         User user = userService.login(id);
         if (user != null) {
             if (user.getPassword().equals(password)) {
@@ -32,19 +32,12 @@ public class UserController {
                 return "page";
             } else {
                 model.addAttribute("message", "登录失败");
-                return "loginInfo";
+                return "login";
             }
         } else {
             model.addAttribute("message", "你输入的用户名或密码有误");
-            return "loginInfo";
+            return "login";
         }
     }
-
-    /**
-     * 回到登录页
-     */
-    @RequestMapping(value="/index")
-    public String index(){
-        return "index";
-    }
 }
+
