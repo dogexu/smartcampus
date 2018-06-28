@@ -24,12 +24,12 @@ public class UserController {
      * 用户登录
      */
     @RequestMapping(value = "/login")
-    public String login(@RequestParam String id, @RequestParam String password, Model model) {
+    public String login(@RequestParam String id,@RequestParam String password, Model model) {
         User user = userService.login(id);
         if (user != null) {
             if (user.getPassword().equals(password)) {
                 //登录成功
-                return "page";
+                return "main";
             } else {
                 model.addAttribute("message", "登录失败");
                 return "login";
@@ -40,4 +40,3 @@ public class UserController {
         }
     }
 }
-

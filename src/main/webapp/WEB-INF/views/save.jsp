@@ -26,15 +26,15 @@
             </div>
             <div>
                 <ul class="nav navbar-nav">
-                    <li><a href="<%=basePath%>/goods/toSavePage.do"><strong>添加商品</strong></a></li>
-                    <li><a href="<%=basePath%>/goods/toListPage.do"><strong>查询商品</strong></a></li>
+                    <li><a href="<%=basePath%>/goods/toSavePage.do"><strong>上架商品</strong></a></li>
+                    <li><a href="<%=basePath%>/goods/toListPage.do"><strong>我的商品</strong></a></li>
                 </ul>
             </div>
         </div>
     </nav>
 </div>
 <div class="container">
-    <h1 class="text-center">商品信息添加页面</h1>
+    <h1 class="text-center">商品上架页面</h1>
     <hr/>
     <br/>
     <form class="form-inline text-center" action="<%=basePath%>/goods/save.do" method="post">

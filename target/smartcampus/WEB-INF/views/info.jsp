@@ -27,7 +27,7 @@
             <div>
                 <ul class="nav navbar-nav">
                     <li><a href="<%=basePath%>/goods/toSavePage.do"><strong>添加商品</strong></a></li>
-                    <li><a href="<%=basePath%>/goods/toListPage.do"><strong>查询商品</strong></a></li>
+                    <li><a href="<%=basePath%>/goods/toListPage.do"><strong>我的商品</strong></a></li>
                 </ul>
             </div>
         </div>

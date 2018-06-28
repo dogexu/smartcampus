@@ -71,7 +71,7 @@ public class GoodsController {
         conMap.put("g_price",g_price);
 
         // 回显数据
-        model.addAttribute("page",goodsService.findByPage(pageCode,pageSize,conMap));
+        model.addAttribute("main",goodsService.findByPage(pageCode,pageSize,conMap));
         return "list";
     }
 

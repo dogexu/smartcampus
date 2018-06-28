@@ -29,8 +29,8 @@
             </div>
             <div>
                 <ul class="nav navbar-nav">
-                    <li><a href="<%=basePath%>/goods/toSavePage.do"><strong>添加商品</strong></a></li>
-                    <li><a href="<%=basePath%>/goods/toListPage.do"><strong>查询商品</strong></a></li>
+                    <li><a href="<%=basePath%>/goods/toSavePage.do"><strong>上架商品</strong></a></li>
+                    <li><a href="<%=basePath%>/goods/toListPage.do"><strong>我的商品</strong></a></li>
                 </ul>
             </div>
         </div>
@@ -38,9 +38,6 @@
 </div>
 <br/>
 <div class="container">
-    <h1 class="text-center">商品列表信息页面</h1>
-    <hr/>
-    <br/>
     <form class="form-inline" action="<%=basePath%>/goods/findByPage.do" method="post">
         <div class="form-group">
             <label>商品名称：</label>
@@ -60,7 +57,6 @@
             <input type="reset" value="重置" class="form-control btn btn-danger"/>
         </div>
     </form>
-    <br/>
     <hr/>
     <div class="table-responsive">
         <table class="table table-hover table-striped">
@@ -81,7 +77,7 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${requestScope.page.beanList}" var="goods">
+            <c:forEach items="${requestScope.main.beanList}" var="goods">
                 <tr class="text-center">
                     <td>${goods.id}</td>
                     <td>${goods.g_name}</td>
@@ -111,28 +107,28 @@
         <div class="row">
             <div class="form-inline">
                 <label style="font-size:14px;margin-top:22px;">
-                    <strong>共<b>${requestScope.page.totalCount}</b>条记录，共<b>${requestScope.page.totalPage}</b>页</strong>
+                    <strong>共<b>${requestScope.main.totalCount}</b>条记录，共<b>${requestScope.main.totalPage}</b>页</strong>
                     &nbsp;
                     &nbsp;
                     <strong>每页显示</strong>
                     <select class="form-control" name="pageSize">
                         <option value="2"
-                                <c:if test="${requestScope.page.pageSize == 2}">selected</c:if> >2
+                                <c:if test="${requestScope.main.pageSize == 2}">selected</c:if> >2
                         </option>
                         <option value="3"
-                                <c:if test="${requestScope.page.pageSize == 3}">selected</c:if> >3
+                                <c:if test="${requestScope.main.pageSize == 3}">selected</c:if> >3
                         </option>
                         <option value="4"
-                                <c:if test="${requestScope.page.pageSize == 4}">selected</c:if> >4
+                                <c:if test="${requestScope.main.pageSize == 4}">selected</c:if> >4
                         </option>
                         <option value="5"
-                                <c:if test="${requestScope.page.pageSize == 5}">selected</c:if> >5
+                                <c:if test="${requestScope.main.pageSize == 5}">selected</c:if> >5
                         </option>
                     </select>
                     <strong>条</strong>
                     &nbsp;
                     &nbsp;
-                    <strong>到第</strong>&nbsp;<input type="text" size="3" id="page" name="pageCode"
+                    <strong>到第</strong>&nbsp;<input type="text" size="3" id="main" name="pageCode"
                                                     class="form-control input-sm"
                                                     style="width:11%"/>&nbsp;<strong>页</strong>
                     &nbsp;
@@ -143,20 +139,20 @@
                         <a href="<%=basePath%>/goods/findByPage.do?pageCode=1"><strong>首页</strong></a>
                     </li>
                     <li>
-                        <c:if test="${requestScope.page.pageCode > 2}">
-                            <a href="<%=basePath%>/goods/findByPage.do?pageCode=${requestScope.page.pageCode - 1}">&laquo;</a>
+                        <c:if test="${requestScope.main.pageCode > 2}">
+                            <a href="<%=basePath%>/goods/findByPage.do?pageCode=${requestScope.main.pageCode - 1}">&laquo;</a>
                         </c:if>
                     </li>
 
                     <!-- 写关于分页页码的逻辑 -->
                     <c:choose>
-                        <c:when test="${requestScope.page.totalPage <= 5}">
+                        <c:when test="${requestScope.main.totalPage <= 5}">
                             <c:set var="begin" value="1"/>
-                            <c:set var="end" value="${requestScope.page.totalPage}"/>
+                            <c:set var="end" value="${requestScope.main.totalPage}"/>
                         </c:when>
                         <c:otherwise>
-                            <c:set var="begin" value="${requestScope.page.pageCode - 1}"/>
-                            <c:set var="end" value="${requestScope.page.pageCode + 3}"/>
+                            <c:set var="begin" value="${requestScope.main.pageCode - 1}"/>
+                            <c:set var="end" value="${requestScope.main.pageCode + 3}"/>
 
                             <!-- 头溢出 -->
                             <c:if test="${begin < 1}">
@@ -165,9 +161,9 @@
                             </c:if>
 
                             <!-- 尾溢出 -->
-                            <c:if test="${end > requestScope.page.totalPage}">
-                                <c:set var="begin" value="${requestScope.page.totalPage -4}"/>
-                                <c:set var="end" value="${requestScope.page.totalPage}"/>
+                            <c:if test="${end > requestScope.main.totalPage}">
+                                <c:set var="begin" value="${requestScope.main.totalPage -4}"/>
+                                <c:set var="end" value="${requestScope.main.totalPage}"/>
                             </c:if>
                         </c:otherwise>
                     </c:choose>
@@ -175,10 +171,10 @@
                     <!-- 显示页码 -->
                     <c:forEach var="i" begin="${begin}" end="${end}">
                         <!-- 判断是否是当前页 -->
-                        <c:if test="${i == requestScope.page.pageCode}">
+                        <c:if test="${i == requestScope.main.pageCode}">
                             <li class="active"><a href="javascript:void(0);">${i}</a></li>
                         </c:if>
-                        <c:if test="${i != requestScope.page.pageCode}">
+                        <c:if test="${i != requestScope.main.pageCode}">
                             <li>
                                 <a href="<%=basePath%>/goods/findByPage.do?pageCode=${i}">${i}</a>
                             </li>
@@ -187,12 +183,12 @@
 
 
                     <li>
-                        <c:if test="${requestScope.page.pageCode < requestScope.page.totalPage}">
-                            <a href="<%=basePath%>/goods/findByPage.do?pageCode=${requestScope.page.pageCode + 1}">&raquo;</a>
+                        <c:if test="${requestScope.main.pageCode < requestScope.main.totalPage}">
+                            <a href="<%=basePath%>/goods/findByPage.do?pageCode=${requestScope.main.pageCode + 1}">&raquo;</a>
                         </c:if>
                     </li>
                     <li>
-                        <a href="<%=basePath%>/goods/findByPage.do?pageCode=${requestScope.page.totalPage}"><strong>末页</strong></a>
+                        <a href="<%=basePath%>/goods/findByPage.do?pageCode=${requestScope.main.totalPage}"><strong>末页</strong></a>
                     </li>
                 </ul>
             </div>

@@ -10,17 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<%=basePath%>/css/bootstrap.min.css"/>
     <title>首页</title>
-    <style type="text/css">
-        .header{
-            background-image: url("<%=basePath%>/images/logo.jpeg");
-            background-size: 100%;
-            height: 240px;
-        }
-    </style>
 <html>
 <body>
-<div class="header">
-</div>
 <h2 class="text-center">智慧校园</h2>
 <hr/>
 <form action="<%=basePath%>/user/login.do" method="post" class="form-inline text-center">
@@ -34,6 +25,6 @@
     <br/>
     <input type="submit" value="登录" class="btn btn-default"/>
 </form>
-<center><h2>${message}</h2></center>
+<center><h10>${message}</h10></center>
 </body>
 </html>
