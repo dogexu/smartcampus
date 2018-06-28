@@ -4,7 +4,7 @@
 <generatorConfiguration>
     <!--导入属性配置 -->
     <properties resource="generator.properties"/>
-
+ <!--指定连接驱动，这里直接加在了maven中，方便在不同环境下均可执行-->
     <!--<classPathEntry-->
             <!--location="C:\Users\SAMSUNG\.m2\repository\mysql\mysql-connector-java\8.0.11\mysql-connector-java-8.0.11.jar" />-->
     <context id="context1">
