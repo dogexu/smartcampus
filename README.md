@@ -1,14 +1,14 @@
 # smartcampus
 
-1.开发环境及工具
+ 1. 开发环境及工具
 
     jdk1.8 + mysql5.7 + tomcat7/8 + IDEA
     
-2.系统架构
+ 2. 系统架构
 
     Spring + Springmvc + Maven + Mybatis + BootStrap   
     
-3.导入IDEA 
+ 3. 导入IDEA 
     
     方式一：
     
@@ -19,20 +19,20 @@
     
       下载仓库到本地并解压，打开Intellij IDEA-->Open（选择项目解压路径），找到porm.xml文件并打开，待所有架包下载导入完成即可     
 
-4.导入MySQL数据库
+ 4. 导入MySQL数据库
   
     .sql文件存放路径： resources/db 
   
      1.直接导入选择smartcampus.sql
      2.手动执行打开手动建库smartcampus.txt，复制语句执行     
 
-5.修改JDBC及MyBatis数据库连接账户
+ 5. 修改JDBC及MyBatis数据库连接账户
 
     JDBC配置文件存放路径：resources/jdbc.properties
       
     MyBatis配置文件存放路径：resources/generatorConfig.properties
 
-6.IDEA部署tomcat执行
+6. IDEA部署tomcat执行
 
     注意：针对windows平台，若tomcat安装在系统盘，例如C盘，可能会出现项目日志文件无法写入的情况，可以更改日志的存放路径到其他可写位置或者以管理员身份重新打开IDEA即可解决
 
