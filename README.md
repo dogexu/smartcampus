@@ -6,11 +6,11 @@
     
 测试账户：
   
-  | 账号          | 密码          |
-  |: ------------:|:-------------:| 
-  | 1             | 1             |
-  | 2             | 2             |
-  | 3             | 3             |
+| Name | Academy | score | 
+| - | :-: | -: | 
+| Harry Potter | Gryffindor| 90 | 
+| Hermione Granger | Gryffindor | 100 | 
+| Draco Malfoy | Slytherin | 90 |
 
 1.开发环境及工具
 
