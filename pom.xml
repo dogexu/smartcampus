@@ -38,6 +38,13 @@
           <!--允许覆盖生成的文件-->
           <overwrite>true</overwrite>
         </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.11</version>
+          </dependency>
+        </dependencies>
       </plugin>
     </plugins>
   </build>

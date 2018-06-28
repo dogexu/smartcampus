@@ -5,8 +5,8 @@
     <!--导入属性配置 -->
     <properties resource="generator.properties"/>
 
-    <classPathEntry
-            location="C:\Users\SAMSUNG\.m2\repository\mysql\mysql-connector-java\8.0.11\mysql-connector-java-8.0.11.jar" />
+    <!--<classPathEntry-->
+            <!--location="C:\Users\SAMSUNG\.m2\repository\mysql\mysql-connector-java\8.0.11\mysql-connector-java-8.0.11.jar" />-->
     <context id="context1">
         <!-- 注释 -->
         <commentGenerator>

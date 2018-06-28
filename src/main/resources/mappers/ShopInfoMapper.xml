@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.smartcampus.dao.ShopInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.smartcampus.entity.ShopInfo" >
+    <result column="uuid" property="uuid" jdbcType="VARCHAR" />
+    <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+    <result column="show_addr" property="showAddr" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="CHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.smartcampus.entity.ShopInfo" >
+    insert into shop_info (uuid, shop_name, show_addr, 
+      state)
+    values (#{uuid,jdbcType=VARCHAR}, #{shopName,jdbcType=VARCHAR}, #{showAddr,jdbcType=VARCHAR}, 
+      #{state,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.smartcampus.entity.ShopInfo" >
+    insert into shop_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="shopName != null" >
+        shop_name,
+      </if>
+      <if test="showAddr != null" >
+        show_addr,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="shopName != null" >
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="showAddr != null" >
+        #{showAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

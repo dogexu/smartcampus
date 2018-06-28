@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.smartcampus.dao.OrdersMapper" >
+  <resultMap id="BaseResultMap" type="com.smartcampus.entity.Orders" >
+    <result column="user_uuid" property="userUuid" jdbcType="VARCHAR" />
+    <result column="g_id" property="gId" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="com.smartcampus.entity.Orders" >
+    insert into orders (user_uuid, g_id)
+    values (#{userUuid,jdbcType=VARCHAR}, #{gId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.smartcampus.entity.Orders" >
+    insert into orders
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userUuid != null" >
+        user_uuid,
+      </if>
+      <if test="gId != null" >
+        g_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userUuid != null" >
+        #{userUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="gId != null" >
+        #{gId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>
