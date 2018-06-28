@@ -5,7 +5,8 @@
 <mapper namespace="com.smartcampus.dao.GoodsMapper">
 
   <!-- resultMap用于实现映射结果集 -->
-  <resultMap id="BaseResultMap" type="com.smartcampus.entity.Goods">
+    <!-- 定义的resultMap，可以解决类的属性名和数据库列名不一致的问题-->
+    <resultMap id="BaseResultMap" type="com.smartcampus.entity.Goods">
     <id column="id" property="id" jdbcType="INTEGER"/>
     <result column="g_name" property="g_name" jdbcType="VARCHAR"/>
     <result column="g_price" property="g_price" jdbcType="VARCHAR"/>

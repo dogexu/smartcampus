@@ -2,6 +2,7 @@ package com.smartcampus.controller;
 
 import com.smartcampus.entity.Goods;
 import com.smartcampus.service.GoodsService;
+import org.apache.ibatis.annotations.Options;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
