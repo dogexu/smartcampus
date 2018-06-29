@@ -14,24 +14,15 @@
 <html>
 <link rel="stylesheet" href="<%=basePath%>/css/bootstrap.min.css"/>
 <head>
-    <title>Title</title>
+    <title>主页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 <!-- 导航栏 -->
-<div class="sidebar text-left">
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand">智慧校园</a>
-            </div>
-            <div>
-                <ul class="nav navbar-nav">
-                    <li><a href="<%=basePath%>/goods/toSavePage.do"><strong>上架商品</strong></a></li>
-                    <li><a href="<%=basePath%>/goods/toListPage.do"><strong>我的商品</strong></a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</div>
+<%@ include file="./include/header.jsp"%>
+
 </body>
 </html>
