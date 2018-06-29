@@ -1,8 +1,8 @@
 # smartcampus
 
-访问地址：
+演示地址：
 
-    http://localhost:8080/
+   http://118.89.226.128/smartcampus
     
 测试账户：
   
