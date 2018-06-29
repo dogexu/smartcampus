@@ -33,7 +33,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">商品管理<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a data-toggle="modal" data-target="#addModal">上架商品</a></li>
-                        <li><a href="<%=basePath%>/goods/toSavePage.do">下架商品</a></li>
+                        <li><a href="">下架商品</a></li>
 
                         <li role="separator" class="divider"></li>
                         <li><a href="">商品采购</a></li>
