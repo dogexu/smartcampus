@@ -24,7 +24,7 @@ public class UserController {
      * 用户登录
      */
     @RequestMapping(value = "/login")
-    public String login(@RequestParam String id,@RequestParam String password, Model model) {
+    public String login(@RequestParam(value="id",required=false)  String id,@RequestParam(value="password",required=false)  String password, Model model) {
         User user = userService.login(id);
         if (user != null) {
             if (user.getPassword().equals(password)) {

@@ -2,7 +2,6 @@ package com.smartcampus.controller;
 
 import com.smartcampus.entity.Goods;
 import com.smartcampus.service.GoodsService;
-import org.apache.ibatis.annotations.Options;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,14 +30,6 @@ public class GoodsController {
     private GoodsService goodsService;
 
     /**
-     * 跳转到添加商品功能页面
-     */
-    @RequestMapping("/toSavePage")
-    public String toSavePage() {
-        return "save";
-    }
-
-    /**
      * 跳转到商品列表页面
      */
     @RequestMapping(value = "/toListPage")
@@ -52,7 +43,7 @@ public class GoodsController {
     @RequestMapping(value = "/save")
     public String save(Goods goods, Model model) {
         goodsService.save(goods);
-        model.addAttribute("message", "保存商品信息成功");
+        model.addAttribute("message", "上架成功");
         return "info";
     }
 
@@ -61,7 +52,7 @@ public class GoodsController {
      */
     @RequestMapping(value="/findByPage")
     public String findByPage(@RequestParam(value="pageCode",defaultValue = "1",required = false)int pageCode,
-                             @RequestParam(value="pageSize",defaultValue = "2",required = false)int pageSize,
+                             @RequestParam(value="pageSize",defaultValue = "10",required = false)int pageSize,
                              HttpServletRequest request,
                              Model model){
         // 封装分页数据
@@ -118,7 +109,10 @@ public class GoodsController {
             model.addAttribute("message","更新商品信息失败");
             return "info";
         }
-
+    }
+    @RequestMapping(value = "")
+    public String main(){
+        return "main";
     }
 
 }

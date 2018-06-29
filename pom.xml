@@ -42,9 +42,23 @@
           <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.11</version>
+            <version>5.1.14</version>
           </dependency>
         </dependencies>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.tomcat.maven</groupId>
+        <artifactId>tomcat7-maven-plugin</artifactId>
+        <version>2.2</version>
+
+        <configuration>
+          <url>http://118.89.226.128:8080/manager/text</url>
+          <username>admin</username>
+          <password>010315</password>
+          <update>true</update>
+          <path>/smartcampus</path>
+        </configuration>
       </plugin>
     </plugins>
   </build>
@@ -133,7 +147,7 @@
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
-      <version>8.0.11</version>
+      <version>5.1.14</version>
     </dependency>
     <!-- junit测试包 -->
     <dependency>
@@ -265,5 +279,7 @@
     </dependency>
     <!-- log end -->
   </dependencies>
+
+
 </project>
 
